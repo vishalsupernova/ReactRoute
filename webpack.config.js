@@ -10,15 +10,21 @@ var config = {
     path: BUILD_DIR,
     filename: 'bundle.js'
   },
+  devServer: {
+     contentBase: './build',
+    historyApiFallback: true,
+   },
   module: {
-    rules: [{
+  rules: [
+    {
       test: /\.js$/,
-      exclude: /node_modules/,
-      use: [{
-        loader: 'babel-loader'
-      }] // if you need to import any other files in index.js file we need to add the objects in modules like CSS etc
-    }]
-  }
+      exclude: /(node_modules|bower_components)/,
+      use: {
+        loader: 'babel-loader',
+      }
+    }
+  ]
+}
 };
 
 module.exports = config;
